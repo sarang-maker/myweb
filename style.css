@@ -54,7 +54,39 @@ h2 {
     color: #222;
 }
 
-@media screen and (max-width: 768px) {
+/* 스마트폰 */
+
+@media screen and (max-width: 767px) {
+    body {
+        background-color: yellow;
+    }
+
+    .poem-box {
+        width: 95%;
+        padding: 25px 15px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    .poem p {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+}
+
+/* 태블릿 */
+
+@media screen and (min-width: 768px) and (max-width: 959px) {
+    body {
+        background-color: green;
+    }
+
     .poem-box {
         width: 90%;
         padding: 35px 25px;
@@ -73,21 +105,10 @@ h2 {
     }
 }
 
-@media screen and (max-width: 480px) {
-    .poem-box {
-        padding: 25px 15px;
-    }
+/* 데스크톱, 맥북 */
 
-    h1 {
-        font-size: 30px;
-    }
-
-    h2 {
-        font-size: 16px;
-    }
-
-    .poem p {
-        font-size: 16px;
-        line-height: 1.7;
+@media screen and (min-width: 960px) {
+    body {
+        background-color: skyblue;
     }
 }
