@@ -1,6 +1,15 @@
+@font-face {
+    font-family: 'MunmakchoByeolban';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2604-1@1.0/MUNMAK_BYEOLBANCHE.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }
+
 
 body {
   margin: 0;
