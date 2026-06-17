@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>발표 준비</title>
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'Escoredream';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+      font-weight: 400;
+    }
+
+    @font-face {
+      font-family: 'Escoredream';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+      font-weight: 600;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f7f6f1;
+      font-family: 'Escoredream', sans-serif;
+      color: #2f3a35;
+    }
+
+    .page-wrap {
+      max-width: 1080px;
+      margin: 60px auto;
+      padding: 0 22px;
+    }
+
+    .top-nav {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      background: #fff;
+      color: #2f3a35;
+      text-decoration: none;
+      padding: 11px 18px;
+      border: 1px solid #e4e1d8;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-btn.active {
+      background: #2f3a35;
+      color: #fff;
+      border-color: #2f3a35;
+    }
+
+    .main-card {
+      background: #fff;
+      border: 1px solid #e4e1d8;
+      border-radius: 14px;
+      padding: 48px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .sub {
+      color: #777;
+      font-size: 16px;
+      margin-bottom: 34px;
+    }
+
+    .input-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr 180px 150px;
+      gap: 10px;
+      margin-bottom: 34px;
+    }
+
+    .input-box input {
+      padding: 15px;
+      border: 1px solid #d9d6ce;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: 'Escoredream', sans-serif;
+      outline: none;
+    }
+
+    .input-box input:focus {
+      border-color: #5f7f63;
+    }
+
+    .input-box button {
+      background: #5f7f63;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-family: 'Escoredream', sans-serif;
+      cursor: pointer;
+    }
+
+    .input-box button:hover {
+      background: #415f4a;
+    }
+
+    .dday {
+      padding: 34px;
+      background: #f8f8f4;
+      border: 1px solid #e5e2d9;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    .dday h2 {
+      font-size: 42px;
+      font-weight: 600;
+      color: #5f7f63;
+      margin-bottom: 10px;
+    }
+
+    .dday p {
+      color: #666;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .step-wrap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 34px;
+    }
+
+    .step {
+      border: 1px solid #e1ded6;
+      background: #fff;
+      padding: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .step:hover {
+      border-color: #5f7f63;
+      background: #fafbf8;
+    }
+
+    .step.active {
+      background: #2f3a35;
+      color: #fff;
+      border-color: #2f3a35;
+    }
+
+    .step-num {
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    .step.active .step-num {
+      color: #d9e5d8;
+    }
+
+    .step-title {
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .bottom-box {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 18px;
+    }
+
+    .check-card,
+    .tip-card {
+      background: #fafafa;
+      border: 1px solid #e5e2d9;
+      border-radius: 10px;
+      padding: 30px;
+    }
+
+    .check-card h3,
+    .tip-card h3 {
+      font-size: 21px;
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+
+    .check-card label {
+      display: block;
+      padding: 12px 0;
+      border-bottom: 1px solid #e5e5e5;
+      color: #444;
+      font-size: 15px;
+    }
+
+    .check-card label:last-child {
+      border-bottom: none;
+    }
+
+    .check-card input {
+      margin-right: 10px;
+    }
+
+    .tip-card p {
+      color: #666;
+      line-height: 1.9;
+      margin: 0;
+      font-size: 15px;
+    }
+
+    @media(max-width: 900px) {
+      .input-box {
+        grid-template-columns: 1fr;
+      }
+
+      .step-wrap {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .bottom-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width: 600px) {
+      .main-card {
+        padding: 30px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .step-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page-wrap">
+
+    <nav class="top-nav">
+      <a href="index.html" class="nav-btn">홈</a>
+      <a href="preparepage.html" class="nav-btn active">발표 준비</a>
+      <a href="pptpage.html" class="nav-btn">PPT 피드백</a>
+      <a href="aipage.html" class="nav-btn">발표 피드백</a>
+      <a href="question.html" class="nav-btn">예상 질문</a>
+    </nav>
+    <div class="main-card">
+
+      <h1>발표 준비</h1>
+
+      <p class="sub">
+        과목명, 발표 주제, 발표 날짜를 등록하면 단계별 준비 목록을 확인할 수 있습니다.
+      </p>
+
+      <div class="input-box">
+        <input type="text" placeholder="과목명">
+        <input type="text" placeholder="발표 주제">
+        <input type="date">
+
+        <button onclick="makePlan()">
+          일정 등록
+        </button>
+      </div>
+
+      <div class="dday">
+        <h2>일정 대기</h2>
+        <p>
+          일정을 등록해주세요.<br>
+          저랑 같이 발표 준비해요!
+        </p>
+      </div>
+
+      <div class="step-wrap">
+
+        <div class="step active" onclick="changeStep(0)">
+          <div class="step-num">STEP 01</div>
+          <div class="step-title">주제 선정</div>
+        </div>
+
+        <div class="step" onclick="changeStep(1)">
+          <div class="step-num">STEP 02</div>
+          <div class="step-title">자료 조사</div>
+        </div>
+
+        <div class="step" onclick="changeStep(2)">
+          <div class="step-num">STEP 03</div>
+          <div class="step-title">발표 구성</div>
+        </div>
+
+        <div class="step" onclick="changeStep(3)">
+          <div class="step-num">STEP 04</div>
+          <div class="step-title">발표 연습</div>
+        </div>
+
+      </div>
+
+      <div class="bottom-box">
+
+        <div class="check-card">
+          <h3>주제 선정 체크리스트</h3>
+
+          <label><input type="checkbox"> 과제 주제와 내가 관심 있는 주제 연결해서 생각해보기</label>
+          <label><input type="checkbox"> 발표 목적 정하기</label>
+          <label><input type="checkbox"> 핵심 키워드 정리</label>
+          <label><input type="checkbox"> 발표 제목 정하기</label>
+        </div>
+
+        <div class="tip-card">
+          <h3>TIP</h3>
+          <p>
+            너무 넓은 주제보다는 한 문장으로 설명할 수 있는 주제가 좋아요.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    const steps = [
+      {
+        name: "주제 선정",
+        tip: "너무 넓은 주제보다는 한 문장으로 설명할 수 있는 주제가 좋아요.",
+        check: [
+          "관심 있는 주제 3개 생각하기",
+          "발표 목적 정하기",
+          "핵심 키워드 정리",
+          "발표 제목 정하기"
+        ]
+      },
+      {
+        name: "자료 조사",
+        tip: "자료는 많기보다 신뢰도가 중요해요. 출처를 함께 정리해두면 발표 완성도가 높아져요.",
+        check: [
+          "관련 기사 또는 논문 찾기",
+          "참고 자료 정리하기",
+          "이미지 자료 수집하기",
+          "출처 기록하기"
+        ]
+      },
+      {
+        name: "발표 구성",
+        tip: "처음부터 내용을 많이 넣기보다 도입, 본론, 결론 흐름을 먼저 잡아보세요.",
+        check: [
+          "PPT 목차 정하기",
+          "도입 내용 작성하기",
+          "본론 흐름 구성하기",
+          "결론 정리하기"
+        ]
+      },
+      {
+        name: "발표 연습",
+        tip: "소리 내어 발표해보면 어색한 문장이나 부족한 부분을 쉽게 찾을 수 있어요.",
+        check: [
+          "발표 시간 재기",
+          "예상 질문 정리하기",
+          "PPT 최종 점검하기",
+          "발표 연습 3회 이상 하기"
+        ]
+      }
+    ];
+
+    function changeStep(stepIndex) {
+      document.querySelectorAll(".step").forEach(function(el, i) {
+        el.classList.remove("active");
+
+        if (i === stepIndex) {
+          el.classList.add("active");
+        }
+      });
+
+      document.querySelector(".check-card h3").innerText =
+        steps[stepIndex].name + " 체크리스트";
+
+      let html = "";
+
+      steps[stepIndex].check.forEach(function(item) {
+        html += '<label><input type="checkbox"> ' + item + '</label>';
+      });
+
+      document.querySelectorAll(".check-card label").forEach(function(el) {
+        el.remove();
+      });
+
+      document.querySelector(".check-card").insertAdjacentHTML("beforeend", html);
+
+      document.querySelector(".tip-card p").innerText = steps[stepIndex].tip;
+    }
+
+    function makePlan() {
+      const subject = document.querySelectorAll(".input-box input")[0].value;
+      const title = document.querySelectorAll(".input-box input")[1].value;
+      const date = document.querySelectorAll(".input-box input")[2].value;
+
+      if (!subject || !title || !date) {
+        alert("과목명, 발표 주제, 발표 날짜를 모두 입력해주세요.");
+        return;
+      }
+
+      localStorage.setItem("projectSubject", subject);
+      localStorage.setItem("projectTitle", title);
+      localStorage.setItem("projectDate", date);
+
+      const today = new Date();
+      const target = new Date(date);
+
+      today.setHours(0, 0, 0, 0);
+      target.setHours(0, 0, 0, 0);
+
+      const diff = Math.ceil((target - today) / (1000 * 60 * 60 * 24));
+
+      if (diff < 0) {
+        document.querySelector(".dday h2").innerText = "종료";
+      } else if (diff === 0) {
+        document.querySelector(".dday h2").innerText = "D-day";
+      } else {
+        document.querySelector(".dday h2").innerText = "D-" + diff;
+      }
+
+      document.querySelector(".dday p").innerHTML =
+        subject + "<br>" + title;
+
+      let stepIndex;
+
+      if (diff >= 14) {
+        stepIndex = 0;
+      } else if (diff >= 7) {
+        stepIndex = 1;
+      } else if (diff >= 3) {
+        stepIndex = 2;
+      } else {
+        stepIndex = 3;
+      }
+
+      changeStep(stepIndex);
+    }
+  </script>
+
+</body>
+
+</html>

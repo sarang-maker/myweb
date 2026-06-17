@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>교수님 예상 질문</title>
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'Escoredream';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+      font-weight: 400;
+    }
+
+    @font-face {
+      font-family: 'Escoredream';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-6Bold.woff') format('woff');
+      font-weight: 600;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f7f6f1;
+      font-family: 'Escoredream', sans-serif;
+      color: #2f3a35;
+    }
+
+    .page-wrap {
+      max-width: 1080px;
+      margin: 60px auto;
+      padding: 0 22px;
+    }
+
+    .top-nav {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      background: #fff;
+      color: #2f3a35;
+      text-decoration: none;
+      padding: 11px 18px;
+      border: 1px solid #e4e1d8;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-btn.active {
+      background: #2f3a35;
+      color: #fff;
+      border-color: #2f3a35;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: auto;
+      padding: 0;
+    }
+
+    .box {
+      background: #fff;
+      padding: 50px;
+      border-radius: 14px;
+      border: 1px solid #e4e1d8;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+    }
+
+    h1 {
+      font-weight: 600;
+      color: #2f3a35;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #666;
+      line-height: 1.7;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 260px;
+      padding: 18px;
+      border: 1px solid #d9d6ce;
+      border-radius: 6px;
+      margin-top: 20px;
+      font-size: 15px;
+      line-height: 1.8;
+      resize: vertical;
+      font-family: 'Escoredream', sans-serif;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #5f7f63;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 16px;
+      background: #5f7f63;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 15px;
+      font-family: 'Escoredream', sans-serif;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #415f4a;
+    }
+
+    #result {
+      margin-top: 30px;
+      padding: 28px;
+      background: #fafafa;
+      border: 1px solid #e5e2d9;
+      border-radius: 10px;
+      white-space: pre-line;
+      line-height: 1.9;
+      color: #444;
+    }
+
+    @media(max-width: 600px) {
+      .box {
+        padding: 30px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page-wrap">
+
+    <nav class="top-nav">
+      <a href="index.html" class="nav-btn">홈</a>
+      <a href="preparepage.html" class="nav-btn">발표 준비</a>
+      <a href="pptpage.html" class="nav-btn">PPT 피드백</a>
+      <a href="aipage.html" class="nav-btn">발표 피드백</a>
+      <a href="question.html" class="nav-btn active">예상 질문</a>
+    </nav>
+
+    <div class="container">
+
+      <div class="box">
+        <div class="project-info">
+            <span id="savedSubject">
+                과목명
+            </span>
+
+            <span id="savedTitle">
+                발표 주제
+            </span>
+
+            <span id="savedDday">
+                D-day
+            </span>
+        </div>     
+
+        <h1>교수님 예상 질문 생성</h1>
+
+        <p>
+          발표 자료나 발표 대본을 입력하면 AI가 내용을 분석해
+          교수님이 물어볼 만한 예상 질문을 생성합니다.
+        </p>
+
+        <textarea
+          id="presentation"
+          placeholder="여기에 발표 자료 내용이나 발표 대본을 붙여넣으세요.&#10;&#10;예: 무성영화 시대에는 변사가 영화 내용을 설명하고 등장인물의 대사를 대신 전달하였다..."
+        ></textarea>
+
+        <button onclick="makeQuestion()">
+          예상 질문 생성하기
+        </button>
+
+        <div id="result">
+          여기에 예상 질문이 표시됩니다.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    async function makeQuestion() {
+      const presentation = document.getElementById("presentation").value;
+      const result = document.getElementById("result");
+
+      if (presentation.trim() === "") {
+        result.innerText = "발표 자료나 대본을 입력해주시면 교수님 스타일로 질문해드려요!";
+        return;
+      }
+
+      result.innerText = "질문 생성 중입니다...";
+
+      const API_KEY = "AQ.Ab8RN6L72uFcRJGBkj7oTziqz4qB5dvujtIMLo7tV21kusV1dw";
+
+      try {
+        const response = await fetch(
+          "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + API_KEY,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              contents: [
+                {
+                  parts: [
+                    {
+                      text:
+                        "다음 발표 자료를 읽고 대학 교수님이 실제 발표 시간에 할 법한 예상 질문 5개를 만들어줘. " +
+                        "질문은 비판적 질문, 보충 설명 요구, 선택 이유, 개선점 등을 포함해줘. " +
+                        "답변은 번호를 붙여 한국어로 작성해줘.\n\n" +
+                        presentation
+                    }
+                  ]
+                }
+              ]
+            })
+          }
+        );
+
+        const data = await response.json();
+        console.log(data);
+
+        if (data.error) {
+          result.innerText =
+            "API 오류:\n" +
+            data.error.message;
+          return;
+        }
+
+        result.innerText =
+          data.candidates[0].content.parts[0].text;
+
+      } catch (error) {
+        console.log(error);
+        result.innerText = "다시 시도해주세요";
+      }
+    }
+  </script>
+
+</body>
+
+</html>
